@@ -41,10 +41,10 @@ param={
 
 utility.param2json(param,name)
 
-name = 'GridSearchLgReg'
-param = {
-    'penalty': ['l1', 'l2'],
-    'C':np.logspace(0, 4, 10),
-    'class_weight':['balanced']
-}
-utility.param2json(param,name)
+# name = 'GridSearchLgReg'
+# param = {
+#     'penalty': ['l1', 'l2'],
+#     'C':np.logspace(0, 4, 10),
+#     'class_weight':['balanced']
+# }
+# utility.param2json(param,name)

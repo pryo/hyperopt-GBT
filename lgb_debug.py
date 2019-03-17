@@ -3,7 +3,7 @@ exec(open("./make_configs.py").read())
 import numpy as np
 import pandas as pd
 import utility
-
+from datetime import datetime
 training_frame = pd.read_csv("./data/train.csv")
 
 training_frame=training_frame.drop(columns=["ID_code"])
@@ -58,8 +58,15 @@ layer0_out = layer0.fit_blend(X,y)
 #last layer with Grid search
 from sklearn.model_selection import GridSearchCV
 from sklearn.linear_model import LogisticRegression
-hyperparameters = utility.json2param('GridSearchLgReg')
-logistic=LogisticRegression(n_jobs=4,random_state=123)
+
+
+hyperparameters = {
+    'penalty': ['l1', 'l2'],
+    'C':np.logspace(0, 4, 10),
+    'class_weight':['balanced']
+}
+#hyperparameters = utility.json2param('GridSearchLgReg')
+logistic=LogisticRegression(n_jobs=4,random_state=datetime.now())
 meta_clf=GridSearchCV(logistic, hyperparameters, cv=3, verbose=0)
 best_meta = meta_clf.fit(layer0_out, y.reshape(-1,1))
 
