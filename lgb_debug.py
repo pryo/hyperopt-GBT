@@ -66,7 +66,7 @@ hyperparameters = {
     'class_weight':['balanced']
 }
 #hyperparameters = utility.json2param('GridSearchLgReg')
-logistic=LogisticRegression(n_jobs=4,random_state=datetime.now())
+logistic=LogisticRegression(n_jobs=4,random_state=datetime.now().microsecond)
 meta_clf=GridSearchCV(logistic, hyperparameters, cv=3, verbose=0)
 best_meta = meta_clf.fit(layer0_out, y.reshape(-1,1))
 

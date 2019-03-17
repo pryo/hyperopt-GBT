@@ -12,7 +12,7 @@ class layering:
         self.output =None
     def blend(self,clf,X,y,cv=2):
         output = np.ndarray([len(X),1])
-        kfolds = StratifiedKFold(n_splits=cv, random_state=datetime.now()).split(X, y)
+        kfolds = StratifiedKFold(n_splits=cv, random_state=datetime.now().microsecond).split(X, y)
         for train_idx,val_idx in kfolds:
             if isinstance(clf, lgb.LGBMClassifier):
                 y_val = clf.fit(X[train_idx], y[train_idx],
