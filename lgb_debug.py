@@ -65,7 +65,7 @@ hyperparameters = {
     'C':np.logspace(0, 4, 10),
     'class_weight':['balanced'],
     'solver':['lbfgs'],
-    'max_iter':10000,
+    'max_iter':[10000],
     'n_jobs':[-1]
 }
 #hyperparameters = utility.json2param('GridSearchLgReg')
