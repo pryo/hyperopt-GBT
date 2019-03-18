@@ -19,7 +19,7 @@ param= {
     'num_threads': 8,
     'tree_learner': 'serial',
     'objective': 'binary',
-    'verbosity': -1,
+    'verbose': -1,
     'device_type' : 'gpu',
     'gpu_platform_id' : 0,
     'gpu_device_id' : 0,}
