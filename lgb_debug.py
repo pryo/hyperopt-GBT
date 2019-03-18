@@ -61,15 +61,21 @@ from sklearn.linear_model import LogisticRegression
 
 
 hyperparameters = {
-    'penalty': ['l1', 'l2'],
+    'penalty': ['l2'],
     'C':np.logspace(0, 4, 10),
-    'class_weight':['balanced']
+    'class_weight':['balanced'],
+    'solver':['lbfgs'],
+    'max_iter':10000,
+    'n_jobs':[-1]
 }
 #hyperparameters = utility.json2param('GridSearchLgReg')
-logistic=LogisticRegression(n_jobs=4,random_state=datetime.now().microsecond)
-meta_clf=GridSearchCV(logistic, hyperparameters, cv=3, verbose=0)
-best_meta = meta_clf.fit(layer0_out, y.reshape(-1,1))
+logistic=LogisticRegression(random_state=datetime.now().microsecond)
+#meta_clf=GridSearchCV(logistic, hyperparameters, cv=3, verbose=0)
+meta_clf=GridSearchCV(logistic, hyperparameters, n_jobs=-1,
+                      scoring='roc_auc',cv=4, verbose=0)
 
+#best_meta = meta_clf.fit(layer0_out, y.reshape(-1,1))
+best_meta = meta_clf.fit(layer0_out, y)
 
 
 #get test
