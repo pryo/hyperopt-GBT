@@ -46,7 +46,7 @@ import Stacking
 #kfold is generator that will destory itself after one usage
 clf_list = [lgb_clf0,lgb_clf1,lgb_clf2,NB_clf]
 layer0= Stacking.layering(clf_list)
-layer0_out = layer0.fit_blend(X,y)
+layer0_out = layer0.fit_blend(X,y,cv=10)
 
 # #last layer(meta)
 # from sklearn.linear_model import LogisticRegression
@@ -72,7 +72,7 @@ hyperparameters = {
 logistic=LogisticRegression(random_state=datetime.now().microsecond)
 #meta_clf=GridSearchCV(logistic, hyperparameters, cv=3, verbose=0)
 meta_clf=GridSearchCV(logistic, hyperparameters, n_jobs=-1,
-                      scoring='roc_auc',cv=4, verbose=0)
+                      scoring='roc_auc',cv=5, verbose=0)
 
 #best_meta = meta_clf.fit(layer0_out, y.reshape(-1,1))
 best_meta = meta_clf.fit(layer0_out, y)
