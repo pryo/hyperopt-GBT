@@ -23,7 +23,7 @@ param= {
     'device_type' : 'gpu',
     'gpu_platform_id' : 0,
     'gpu_device_id' : 0,}
-
+#tree_learner = "gpu"
 utility.param2json(param,name)
 
 #catboost
